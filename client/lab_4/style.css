@@ -157,6 +157,7 @@ color:#798086;
 */
 
 .footer {
+  border : 2px dashed;
   flex-shrink: 0;
   padding: 1rem;
   background-color: #626868;
