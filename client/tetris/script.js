@@ -84,6 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
       draw();
       displayShape();
       addScore();
+      gameOver();
     }
   }
 
@@ -162,12 +163,18 @@ document.addEventListener('DOMContentLoaded', () => {
         ScoreDisplay.innerHTML = score;
         row.forEach((index) => {
           squares[index].classList.remove('taken');
-          squares[index].classList.remove('tetromino')
+          squares[index].classList.remove('tetromino');
         });
         const squaresRemoved = squares.splice(i, width);
         squares = squaresRemoved.concat(squares);
         squares.forEach((cell) => grid.appendChild(cell));
       }
+    }
+  }
+  function gameOver() {
+    if (current.some((index) => squares[currentPosition + index].classList.contains('taken'))) {
+      ScoreDisplay.innerHTML = 'end';
+      clearInterval(timerId);
     }
   }
 });
