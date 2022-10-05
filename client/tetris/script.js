@@ -178,7 +178,3 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
-
-/*
-1.29.23 in video z
-*/
