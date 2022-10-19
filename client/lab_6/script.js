@@ -10,13 +10,23 @@
     Under this comment place any utility functions you need - like an inclusive random number selector
     https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 */
-function getRandomIntInclusive(min,max) {
+function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 function injectHTML(list) {
   console.log('fired injectHTML');
+  const target = document.querySelector('#restuarant_list');
+  target.innerHTML = '';
+
+  const listEl = document.createElement('ol');
+  target.appendChild(listEl);
+  list.forEach((item) => {
+    const el = document.createElement('li');
+    el.innerText = item.name;
+    listEl.appendChild(el);
+  });
   /*
   ## JS and HTML Injection
     There are a bunch of methods to inject text or HTML into a document using JS
@@ -39,7 +49,7 @@ function processRestaurants(list) {
   const array2 = array.map((item) => {
     const index = getRandomIntInclusive(0, list.length);
     return list[index];
-  })
+  });
   return array2;
   /*
     ## Process Data Separately From Injecting It
@@ -72,7 +82,7 @@ async function mainEvent() {
   // the async keyword means we can make API requests
   const form = document.querySelector('.main_form'); // get your main form so you can do JS with it
   const submit = document.querySelector('#get-resto'); // get a reference to your submit button
-  const loadAnimation = document.querySelector('.lds-ellipsis'); 
+  const loadAnimation = document.querySelector('.lds-ellipsis');
   submit.style.display = 'none'; // let your submit button disappear
 
   /*
