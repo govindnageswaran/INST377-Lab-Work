@@ -17,9 +17,9 @@ function getRandomIntInclusive(min, max) {
 }
 function injectHTML(list) {
   console.log('fired injectHTML');
-  const restotarget = document.querySelector('#restuarant_list');
+  const restotarget = document.querySelector('#restuarant_list'); /* null */
   restotarget.innerHTML = '';
-  list.forEach((item) => {
+  list.forEach((item) => { 
     const str = `<li>${item.name} </li>`;
     restotarget.innerHTML += str;
   });
