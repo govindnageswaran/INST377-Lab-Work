@@ -17,15 +17,11 @@ function getRandomIntInclusive(min, max) {
 }
 function injectHTML(list) {
   console.log('fired injectHTML');
-  const target = document.querySelector('#restuarant_list');
-  target.innerHTML = '';
-
-  const listEl = document.createElement('ol');
-  target.appendChild(listEl);
+  const restotarget = document.querySelector('#restuarant_list');
+  restotarget.innerHTML = '';
   list.forEach((item) => {
-    const el = document.createElement('li');
-    el.innerText = item.name;
-    listEl.appendChild(el);
+    const str = `<li>${item.name} </li>`;
+    restotarget.innerHTML += str;
   });
   /*
   ## JS and HTML Injection
