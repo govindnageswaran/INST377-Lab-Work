@@ -76,6 +76,7 @@ async function mainEvent() {
     */
   function filteredList(list, filteredInputValue) {
     return list.filter((item) => {
+      if (!item.name) { return; }
       const lowerCaseName = item.name.toLowerCase();
       const lowerCaseQuery = filteredInputValue.toLowerCase();
       return lowerCaseName.includes(lowerCaseQuery);
