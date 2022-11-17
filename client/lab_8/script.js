@@ -85,7 +85,7 @@ function markerPlace(array, map) {
         parseFloat(coordinates[1]),
         parseFloat(coordinates[0])
       )
-    );
+    ).addTo(map);
   });
 }
 async function mainEvent() {
