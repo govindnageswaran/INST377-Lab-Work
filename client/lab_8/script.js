@@ -76,16 +76,22 @@ function initMap() {
 }
 function markerPlace(array, map) {
   console.log('markerPlace', array);
-  array.forEach((item) => {
+  map.eachLayer((layer) => {
+    if (layer instanceof L.Marker) {
+      layer.remove();
+    }
+  });
+  array.forEach((item, index) => {
     const {coordinates} = item.geocoded_column_1;
-    console.log(item);
-    console.log(coordinates[1], coordinates[0]);
     L.marker(
       L.latLng(
         parseFloat(coordinates[1]),
         parseFloat(coordinates[0])
       )
     ).addTo(map);
+    if (index === 0) {
+      map.setView([coordinates[1], coordinates[0]], 10);
+    }
   });
 }
 async function mainEvent() {
@@ -146,7 +152,7 @@ async function mainEvent() {
       console.log(event.target.value);
       const filterList = filteredList(clist, event.target.value);
       injectHTML(filterList);
-      markerPlace(clist, pageMap);
+      markerPlace(filterList, pageMap);
     });
     form.addEventListener('submit', (submitEvent) => {
       // This is needed to stop our page from changing to a new URL even though it heard a GET request
